@@ -20,10 +20,10 @@ public class Lotto {
         this.lottoNumbers = lottoNumbers;
     }
 
-    private List<Integer> generateRandomNumbers() {
-        List<Integer> nums = IntStream.rangeClosed(START_RANGE, END_RANGE)// IntStream
-            .boxed() // Stream<Integer>
-            .collect(Collectors.toList()); // List<Integer>
+    private static List<Integer> generateRandomNumbers() {
+        List<Integer> nums = IntStream.rangeClosed(START_RANGE, END_RANGE)
+            .boxed()
+            .collect(Collectors.toList());
         Collections.shuffle(nums);
 
         List<Integer> newNums = nums.subList(0, COUNT);
