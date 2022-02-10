@@ -7,7 +7,7 @@ import lotto.domain.LottoTickets;
 import lotto.view.InputView;
 import lotto.view.ResultView;
 
-public class LottoProcessor {
+public class LottoGame {
 
     static InputView inputView = new InputView();
     static ResultView resultView = new ResultView();
