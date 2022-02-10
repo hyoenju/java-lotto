@@ -17,19 +17,16 @@ public enum Ranking {
 
     Ranking(final int numberOfMatches, int bonus, final int prizeMoney) {
         this.numberOfMatches = numberOfMatches;
-        if (numberOfMatches == 5) {
-            this.bonus = bonus;
-        } else {
-            this.bonus = 0;
-        }
         this.prizeMoney = prizeMoney;
+        this.bonus = bonus;
     }
 
-    public static Ranking of(final int numberOfMatches, final int bonus) {
+    public static Ranking of(final int numberOfMatches, final int matchBonusNumber) {
+        if (numberOfMatches == SECOND.numberOfMatches && matchBonusNumber == 0) {
+            return THIRD;
+        }
         return Arrays.stream(values())
-            .filter(
-                ranking -> (ranking.numberOfMatches == numberOfMatches) &&
-                    (ranking.bonus == bonus))
+            .filter(ranking -> ranking.numberOfMatches == numberOfMatches)
             .findAny()
             .orElse(OTHERS);
     }
@@ -58,5 +55,4 @@ public enum Ranking {
     public int getCount() {
         return count;
     }
-
 }
