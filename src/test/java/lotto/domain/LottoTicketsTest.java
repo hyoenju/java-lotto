@@ -14,7 +14,7 @@ class LottoTicketsTest {
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
                 new Lotto(Arrays.asList(5, 6, 7, 8, 9, 10))));
         List<Integer> correctWinNumbers = lottoTickets.countNumberOfMatches(
-            new LottoMachine(Arrays.asList(1, 2, 3, 4, 5, 6), 8));
+            new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 8));
         Assertions.assertThat(correctWinNumbers.get(0)).isEqualTo(6);
         Assertions.assertThat(correctWinNumbers.get(1)).isEqualTo(2);
     }
@@ -26,7 +26,7 @@ class LottoTicketsTest {
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
                 new Lotto(Arrays.asList(5, 6, 7, 8, 9, 10))));
         List<Integer> checkBonusNumber = lottoTickets.checkBonusNumber(
-            new LottoMachine(Arrays.asList(1, 2, 3, 4, 5, 6), 8));
+            new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 8));
         Assertions.assertThat(checkBonusNumber.get(0)).isEqualTo(0);
         Assertions.assertThat(checkBonusNumber.get(1)).isEqualTo(1);
     }

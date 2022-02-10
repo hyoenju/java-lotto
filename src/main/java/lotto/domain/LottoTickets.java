@@ -27,7 +27,7 @@ public class LottoTickets {
         return lottoTickets;
     }
     
-    public List<Integer> countNumberOfMatches(LottoMachine lottoMachine) {
+    public List<Integer> countNumberOfMatches(WinningLotto lottoMachine) {
         List<Integer> correctNumbers = new ArrayList<>();
         for (Lotto lotto : lottoTickets) {
             correctNumbers.add(lotto.compareLottoAndWinnerNumbers(lottoMachine));
@@ -35,7 +35,7 @@ public class LottoTickets {
         return correctNumbers;
     }
 
-    public List<Integer> checkBonusNumber(final LottoMachine lottoMachine) {
+    public List<Integer> checkBonusNumber(final WinningLotto lottoMachine) {
         final List<Integer> checkBonusNumber = new ArrayList<>();
         for (Lotto lotto : lottoTickets) {
             checkBonusNumber.add(lotto.compareLottoAndBonusNumbers(lottoMachine));

@@ -2,13 +2,13 @@ package lotto.domain;
 
 import java.util.List;
 
-public class LottoMachine {
+public class WinningLotto {
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
     private final int LOTTO_LENGTH = 6;
 
-    public LottoMachine(List<Integer> winningNumbers, int bonusNumber) {
+    public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         checkLengthOfWinningNumbers(winningNumbers);
 
         this.winningNumbers = winningNumbers;

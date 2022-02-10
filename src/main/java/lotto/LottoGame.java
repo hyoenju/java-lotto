@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 import lotto.domain.Analyzer;
-import lotto.domain.LottoMachine;
+import lotto.domain.WinningLotto;
 import lotto.domain.LottoTickets;
 import lotto.view.InputView;
 import lotto.view.ResultView;
@@ -25,7 +25,7 @@ public class LottoGame {
             List<Integer> winningNumbers = inputView.getWinningNumbers();
             int bonusNumber = inputView.getBonusNumber();
 
-            LottoMachine lottoMachine = new LottoMachine(winningNumbers, bonusNumber);
+            WinningLotto lottoMachine = new WinningLotto(winningNumbers, bonusNumber);
 
             List<Integer> numberOfMatches = lottoTickets.countNumberOfMatches(lottoMachine);
             List<Integer> bonusNumbers = lottoTickets.checkBonusNumber(lottoMachine);

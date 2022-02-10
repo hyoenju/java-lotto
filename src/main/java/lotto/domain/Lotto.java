@@ -40,12 +40,12 @@ public class Lotto {
             .collect(Collectors.toList());
         }
 
-    public int compareLottoAndWinnerNumbers(LottoMachine lottoMachine) {
+    public int compareLottoAndWinnerNumbers(WinningLotto lottoMachine) {
         return Long.valueOf(lottoNumbers.stream()
             .filter(lottoMachine::isContain).count()).intValue();
     }
 
-    public int compareLottoAndBonusNumbers(final LottoMachine lottoMachine) {
+    public int compareLottoAndBonusNumbers(final WinningLotto lottoMachine) {
         return Long.valueOf(lottoNumbers.stream()
             .filter(lottoMachine::isEqualBonusNumber).count()).intValue();
     }
