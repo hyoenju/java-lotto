@@ -28,8 +28,8 @@ public enum Ranking {
     public static Ranking of(final int numberOfMatches, final int bonus) {
         return Arrays.stream(values())
             .filter(
-                Ranking -> (Ranking.numberOfMatches == numberOfMatches) &&
-                    (Ranking.bonus == bonus))
+                ranking -> (ranking.numberOfMatches == numberOfMatches) &&
+                    (ranking.bonus == bonus))
             .findAny()
             .orElse(OTHERS);
     }
