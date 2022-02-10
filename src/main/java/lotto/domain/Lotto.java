@@ -10,6 +10,8 @@ public class Lotto {
     private static final int START_RANGE = 1;
     private static final int END_RANGE = 45;
     private static final int COUNT = 6;
+
+    private static List<Integer> numberSequence;
     private final List<Integer> lottoNumbers;
 
     public Lotto() {
@@ -18,6 +20,14 @@ public class Lotto {
 
     public Lotto(List<Integer> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
+        numberSequence = generateNumberSequence();
+    }
+
+
+    private List<Integer> generateNumberSequence() {
+        return IntStream.rangeClosed(START_RANGE, END_RANGE)
+            .boxed()
+            .collect(Collectors.toList());
     }
 
     private static List<Integer> generateRandomNumbers() {
