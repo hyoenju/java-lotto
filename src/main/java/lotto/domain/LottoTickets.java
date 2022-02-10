@@ -26,15 +26,7 @@ public class LottoTickets {
         }
         return lottoTickets;
     }
-
-    public int getTicketCounts() {
-        return this.ticketCounts;
-    }
-
-    public List<Lotto> getLottoTickets() {
-        return lottoTickets;
-    }
-
+    
     public List<Integer> countNumberOfMatches(LottoMachine lottoMachine) {
         List<Integer> correctNumbers = new ArrayList<>();
         for (Lotto lotto : lottoTickets) {
@@ -51,5 +43,11 @@ public class LottoTickets {
         return checkBonusNumber;
     }
 
+    public int getTicketCounts() {
+        return this.ticketCounts;
+    }
 
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
+    }
 }
