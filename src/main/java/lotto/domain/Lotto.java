@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,16 +32,13 @@ public class Lotto {
     }
 
     private static List<Integer> generateRandomNumbers() {
-        List<Integer> nums = IntStream.rangeClosed(START_RANGE, END_RANGE)
-            .boxed()
+        List<Integer> numbers = new ArrayList<>(numberSequence);
+        Collections.shuffle(numbers);
+        return numbers.subList(0, COUNT)
+            .stream()
+            .sorted()
             .collect(Collectors.toList());
-        Collections.shuffle(nums);
-
-        List<Integer> newNums = nums.subList(0, COUNT);
-        Collections.sort(newNums);
-
-        return newNums;
-    }
+        }
 
     public int compareLottoAndWinnerNumbers(LottoMachine lottoMachine) {
         return Long.valueOf(lottoNumbers.stream()
