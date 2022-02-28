@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.domain.Analyzer;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
 
@@ -16,25 +17,25 @@ public class ResultView {
         }
     }
 
-    public void printAnalyzeResults(double profitPercent) {
+    public void printAnalyzeResults(Analyzer analyzer) {
         System.out.println("당첨통계");
         System.out.println("---------");
-        printPrizeMoney(Ranking.FIRST);
-        printPrizeMoney(Ranking.SECOND);
-        printPrizeMoney(Ranking.THIRD);
-        printPrizeMoney(Ranking.FOURTH);
-        printPrizeMoney(Ranking.FIFTH);
-        printProfitPercent(profitPercent);
+        printPrizeMoney(Ranking.FIRST, analyzer);
+        printPrizeMoney(Ranking.SECOND, analyzer);
+        printPrizeMoney(Ranking.THIRD, analyzer);
+        printPrizeMoney(Ranking.FOURTH, analyzer);
+        printPrizeMoney(Ranking.FIFTH, analyzer);
+        printProfitPercent(analyzer.calculateProfitPercent());
     }
 
-    public void printPrizeMoney(Ranking ranking) {
+    public void printPrizeMoney(Ranking ranking, Analyzer analyzer) {
         StringBuilder sb = new StringBuilder("%d개 일치");
-        if (ranking.getBonus() == 1) {
+        if (ranking.name().equals(Ranking.SECOND.name())) {
             sb.append(", 보너스 볼 일치");
         }
         sb.append("(%d원) - %d개%n");
         System.out.printf((sb.toString()), ranking.getNumberOfMatches(), ranking.getPrizeMoney(),
-            ranking.getCount());
+            analyzer.getResultValues(ranking.name()).size());
     }
 
 

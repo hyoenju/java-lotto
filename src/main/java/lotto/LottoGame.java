@@ -1,9 +1,11 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.Payment;
 import lotto.domain.Analyzer;
-import lotto.domain.WinningLotto;
+import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.ResultView;
 
@@ -14,24 +16,43 @@ public class LottoGame {
 
     public static void main(String[] args) {
         try {
-            int payment = inputView.getPayment();
-            LottoTickets lottoTickets = new LottoTickets(payment);
+            Payment payment = new Payment(inputView.getPayment());
+            resultView.printNumberOfLotto(payment.numberOfPurchases);
 
-            int ticketCounts = lottoTickets.getTicketCounts();
+            LottoTickets lottoTickets = new LottoTickets(payment.numberOfPurchases);
 
-            resultView.printNumberOfLotto(ticketCounts);
-            resultView.printLottoTickets(lottoTickets.getLottoTickets());
+            for (Lotto lotto : lottoTickets.getLottoTickets()) {
+                System.out.println(lotto);
+            }
+            WinningLotto winningLotto = new WinningLotto(inputView.getWinningNumbers(),
+                inputView.getBonusNumber());
+//
+            List<Integer> numberOfMatches = winningLotto.countNumberOfMatches(lottoTickets);
+            List<Boolean> bonusNumbers = winningLotto.hasBonusNumbers(lottoTickets);
+//
+//            System.out.println(numberOfMatches);
+//            System.out.println(bonusNumbers);
+////
+//            Ranking.of(match, bonus).getPrizeMoney();
 
-            List<Integer> winningNumbers = inputView.getWinningNumbers();
-            int bonusNumber = inputView.getBonusNumber();
-
-            WinningLotto lottoMachine = new WinningLotto(winningNumbers, bonusNumber);
-
-            List<Integer> numberOfMatches = lottoTickets.countNumberOfMatches(lottoMachine);
-            List<Integer> bonusNumbers = lottoTickets.checkBonusNumber(lottoMachine);
-
-            Analyzer analyzer = new Analyzer(payment, numberOfMatches, bonusNumbers);
-            resultView.printAnalyzeResults(analyzer.calculateProfitPercent());
+//            System.out.println(lotto);/
+//            LottoTickets lottoTickets = new LottoTickets(payment);
+//
+//            int ticketCounts = lottoTickets.getTicketCounts();
+//
+//            resultView.printNumberOfLotto(ticketCounts);
+//            resultView.printLottoTickets(lottoTickets.getLottoTickets());
+//
+//            List<Integer> winningNumbers = inputView.getWinningNumbers();
+//            int bonusNumber = inputView.getBonusNumber();
+//
+//            WinningLotto lottoMachine = new WinningLotto(winningNumbers, bonusNumber);
+//
+//            List<Integer> numberOfMatches = lottoTickets.countNumberOfMatches(lottoMachine);
+//            List<Integer> bonusNumbers = lottoTickets.checkBonusNumber(lottoMachine);
+//
+            Analyzer analyzer = new Analyzer(payment.paymentAmount, numberOfMatches, bonusNumbers);
+            resultView.printAnalyzeResults(analyzer);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

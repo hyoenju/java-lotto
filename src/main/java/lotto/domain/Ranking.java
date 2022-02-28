@@ -3,26 +3,25 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Ranking {
-    FIRST(6, 0, 2_000_000_000),
-    SECOND(5, 1, 30_000_000),
-    THIRD(5, 0, 1_500_000),
-    FOURTH(4, 0, 50_000),
-    FIFTH(3, 0, 5_000),
-    OTHERS(0, 0, 0);
+    FIRST(6, false, 2_000_000_000),
+    SECOND(5, true, 30_000_000),
+    THIRD(5, false, 1_500_000),
+    FOURTH(4, false, 50_000),
+    FIFTH(3, false, 5_000),
+    OTHERS(0, false, 0);
 
     private final int numberOfMatches;
     private final int prizeMoney;
-    private final int bonus;
-    private int count = 0;
+    private final boolean bonus;
 
-    Ranking(final int numberOfMatches, int bonus, final int prizeMoney) {
+    Ranking(final int numberOfMatches, boolean bonus, final int prizeMoney) {
         this.numberOfMatches = numberOfMatches;
         this.prizeMoney = prizeMoney;
         this.bonus = bonus;
     }
 
-    public static Ranking of(final int numberOfMatches, final int matchBonusNumber) {
-        if (numberOfMatches == SECOND.numberOfMatches && matchBonusNumber == 0) {
+    public static Ranking of(final int numberOfMatches, final boolean matchBonusNumber) {
+        if (numberOfMatches == SECOND.numberOfMatches && !matchBonusNumber) {
             return THIRD;
         }
         return Arrays.stream(values())
@@ -31,28 +30,11 @@ public enum Ranking {
             .orElse(OTHERS);
     }
 
-    public void addWinningCount() {
-        count++;
-    }
-
-    public int operate() {
-        return prizeMoney * count;
-    }
-
-
     public int getNumberOfMatches() {
         return numberOfMatches;
     }
 
     public int getPrizeMoney() {
         return prizeMoney;
-    }
-
-    public int getBonus() {
-        return bonus;
-    }
-
-    public int getCount() {
-        return count;
     }
 }
